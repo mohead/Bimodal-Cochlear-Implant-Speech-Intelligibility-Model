@@ -1,0 +1,43 @@
+function mfAudiogram = PTAudiogram(name)
+% This function will provide a matrix that discribes the hearing loss. The
+% output consists of a matrix of 3 columns and an  13 rows.
+% The first column is the frequency at which the hearing threshold will be
+% specified. The second and third columns is the hearing threshold for the
+% left and right ears respectively in dB HL.  The number of rows is 
+% arbitrary and can be different for different cases given it is given in
+% an ascending order. 
+    % Parse the input to get the audiograms required for each ear
+    Parser_Cell = strsplit(name,'_');
+    
+  
+    Audiograms = [...
+%   Freq in Hz  NH          Mild HL     Severe HL   Cochlear    MED_EL in
+%   dBHL
+    0.00		0.00		0.00		40.00		54.91		50.00;   ...
+    50.00		0.00		0.00		40.00		53.07		45.68;   ...
+    100.00		0.00		0.00		40.00		51.23		41.35;   ...
+    150.00		0.00		0.00		40.00		49.38		36.09;   ...
+    200.00		0.00		0.00		40.00		47.54		29.40;   ...
+    250.00		0.00		0.00		40.00		44.41		20.89;   ...
+    350.00		0.00		0.00		52.00		38.15		0.28;   ...
+    500.00		0.00		0.00		70.00		25.39		0.00;   ...
+    1000.00		0.00		30.00		100.00		0.00		0.00;   ...
+    2000.00		0.00		50.00		100.00		0.00		0.00;   ...
+    3000.00		0.00		55.00		100.00		0.00		0.00;   ...
+    4000.00		0.00		60.00		100.00		0.00		0.00;   ...
+    8000.00		0.00		70.00		100.00		0.00		0.00];
+
+    % This type string corresponds to the order of variables in the above
+    % table. 
+    Types =     strsplit(['Fq_NH_MHL_SHL_Cochlear_MED-EL'],'_');
+    
+    
+    % Set up the output: Please note, that the audiograms of the ears are
+    % will be in the variable name in the 1st (for the left ear), and
+    % 2nd (for the right ear) indicies). 
+    
+    mfAudiogram = [Audiograms(:,1),...  % First column corresponds to the frequency axis of the HL audiogram
+                   Audiograms(:,(strcmp(Parser_Cell{1},Types))),... Second column corresponds to HL of the second ear
+                   Audiograms(:,(strcmp(Parser_Cell{2},Types)))];%  Third column corresponds to HL of the second ear
+    
+end

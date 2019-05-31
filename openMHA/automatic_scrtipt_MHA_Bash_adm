@@ -1,0 +1,8 @@
+#!/bin/bash
+#This export line should be set according to the MATLAB calling file
+export LD_LIBRARY_PATH=$PWD/../openMHA/bin 
+#This export line should be set according to the MATLAB calling file
+export PATH=$PATH:$PWD/../openMHA/bin
+#The configuration path should be set according to the MATLAB calling file
+
+mha --log=CON ?read:../openMHA/mha/configurations/single_channel_noise_reduction.cfg
